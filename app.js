@@ -29,7 +29,7 @@ const init = async () => {
     );
   });
 
-  await db.sync({ force: true });
+  await db.sync({ force: false });
 
   const PORT = 3000;
   app.listen(PORT, () => {

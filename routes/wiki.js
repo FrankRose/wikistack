@@ -4,11 +4,26 @@ const {Page} = require('../models');
 const layout = require('../views/layout');
 const { addPage } = require('../views');
 
+router.get('/add', (req, res) => {
+  res.send(addPage());
+});
+
+router.get('/:slug', async (req, res, next) => {
+  res.send(`hit dynamic route at ${req.params.slug}`);
+  try{
+  const requestedPage = await Page.findOne({
+    where: {slug: req.params.slug}
+  });
+console.log(requestedPage)
+} catch(error){next(error)}
+});
 
 router.get('/', (req, res, next) => {
   // res.send('got to GET /wiki/');
   res.send(layout('You are on the Wiki page!!'));
 });
+
+
 
 router.post('/', async (req, res, next) => {
   // console.log(req.body)
@@ -45,10 +60,6 @@ router.post('/', async (req, res, next) => {
   {
     next(error)
   }
-});
-
-router.get('/add', (req, res) => {
-  res.send(addPage());
 });
 
 module.exports = router;
