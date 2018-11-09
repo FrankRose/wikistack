@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/FrankRose/wikistack#readme",
   "dependencies": {
+    "chalk": "^2.4.1",
     "express": "^4.16.4",
     "html-template-tag": "^2.0.0",
     "morgan": "^1.9.1",
