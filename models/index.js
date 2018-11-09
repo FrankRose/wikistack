@@ -23,8 +23,10 @@ const Page = db.define('page', {
 });
 
 Page.beforeCreate((pageInstance, optionsObject) => {
-  pageInstance.slug = pageInstance.title.replace(/\s+/g, '_').replace(/\W/g, '');
-})
+  pageInstance.slug = pageInstance.title
+    .replace(/\s+/g, '_')
+    .replace(/\W/g, '');
+});
 
 const User = db.define('user', {
   name: {
@@ -39,5 +41,7 @@ const User = db.define('user', {
     },
   },
 });
+
+Page.belongsTo(User, { as: 'author' });
 
 module.exports = { Page, User, db };
