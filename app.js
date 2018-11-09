@@ -11,7 +11,8 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 app.use('/', (req, res, next) => {
   //res.send('Hello World!!');
-  res.send(layout('Hello World!!'));
+  const now = new Date(Date.now());
+  res.send(layout('Hello World!! ' + now.toISOString()));
 });
 
 const init = async () => {
@@ -19,8 +20,7 @@ const init = async () => {
     console.log('connected to the database');
   });
 
-  await Page.sync();
-  await User.sync();
+  await db.sync();
 
   const PORT = 3000;
   app.listen(PORT, () => {
