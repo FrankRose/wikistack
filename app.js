@@ -5,15 +5,15 @@ const app = express();
 const morgan = require('morgan');
 const layout = require('./views/layout');
 const { db } = require('./models/index');
-const { Page } = require('./models/index');
-const { User } = require('./models/index');
-const wikiRouter = require('./routes/wiki');
-const userRouter = require('./routes/user');
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use('/wiki', wikiRouter);
+app.use('/users', require('./routes/user'));
+app.use('/wiki', require('./routes/wiki'));
+app.get('/', (req, res) => {
+  res.redirect('/wiki');
+});
 app.use('/', (req, res, next) => {
   const now = new Date(Date.now());
   res.send(layout('Hello World!! ' + now.toISOString()));
@@ -22,9 +22,6 @@ app.use('/', (req, res, next) => {
 const init = async () => {
   await db.authenticate().then(() => {
     console.log(
-      // `Connected to ${db.config.database} db on ${
-      //   db.config.host
-      // } through port ${db.config.port}`
       `Database connection successful!
       SERVER: ${chalk.blue(db.config.database)}
       DATABASE: ${chalk.blue(db.config.host)}
