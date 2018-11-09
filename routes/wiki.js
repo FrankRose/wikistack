@@ -4,6 +4,7 @@ const { Page } = require('../models');
 const layout = require('../views/layout');
 const { addPage } = require('../views');
 const wikiPage = require('../views/wikipage');
+const mainPage = require('../views/main');
 
 router.get('/add', (req, res) => {
   res.send(addPage());
@@ -22,9 +23,12 @@ router.get('/:slug', async (req, res, next) => {
   }
 });
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   // res.send('got to GET /wiki/');
-  res.send(layout('You are on the Wiki page!!'));
+  // res.send(layout('You are on the Wiki page!!'));
+  const allPages = await Page.findAll();
+  // console.log(allPages);
+  res.send(mainPage(allPages));
 });
 
 router.post('/', async (req, res, next) => {
