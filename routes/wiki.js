@@ -17,9 +17,10 @@ router.post('/', async (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
   const status = req.body.status;
-  let slug = title.replace(' ', '_');
-  const regex = /[^[a-zA-Z0-9]/g;
-  slug = slug.replace(regex, '');
+  let slug = '';
+  // let slug = title.replace(' ', '_');
+  // const regex = /[^[a-zA-Z0-9]/g;
+  // slug = slug.replace(regex, '');
 
 // page =
 //   const page = new Page({
