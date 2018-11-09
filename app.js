@@ -17,6 +17,9 @@ app.use('/', (req, res, next) => {
   const now = new Date(Date.now());
   res.send(layout('Hello World!! ' + now.toISOString()));
 });
+app.use('/wiki', wikiRouter);
+//app.use('/wiki', userRouter);
+
 
 const init = async () => {
   await db.authenticate().then(() => {
