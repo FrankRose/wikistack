@@ -5,6 +5,9 @@ const layout = require('./views/layout');
 const { db } = require('./models/index');
 const { Page } = require('./models/index');
 const { User } = require('./models/index');
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
+
 // const router = app.Router();
 
 app.use(morgan('dev'));
@@ -20,7 +23,7 @@ const init = async () => {
     console.log('connected to the database');
   });
 
-  await db.sync();
+  await db.sync(({force: true}));
 
   const PORT = 3000;
   app.listen(PORT, () => {
