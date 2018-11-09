@@ -36,14 +36,23 @@ router.post('/', async (req, res, next) => {
   const content = req.body.content;
   const status = req.body.status;
   let slug = '';
+
+  const page = new Page({
+    title,
+    content,
+    status,
+    slug,
+  });
   try {
-    await Page.create({
-      title,
-      content,
-      status,
-      slug,
-    });
-    res.redirect(`/wiki/${title.replace(/\s+/g, '_').replace(/\W/g, '')}`);
+    // await Page.create({
+    //   title,
+    //   content,
+    //   status,
+    //   slug,
+    // });
+    await page.save();
+    // res.redirect(`/wiki/${title.replace(/\s+/g, '_').replace(/\W/g, '')}`);
+    res.redirect(`/wiki/${page.slug}`);
   } catch (error) {
     next(error);
   }
