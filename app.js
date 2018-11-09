@@ -8,7 +8,7 @@ const { db } = require('./models/index');
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '/public')));
-
+app.use(express.urlencoded({ extended: false }));
 app.use('/users', require('./routes/user'));
 app.use('/wiki', require('./routes/wiki'));
 app.get('/', (req, res) => {

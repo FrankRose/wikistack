@@ -7,17 +7,17 @@ module.exports = () =>
     <hr />
     <form method="POST" action="/wiki/">
       <div>
-        <label for="authorName" class="col-sm-2 control-label">Name:</label>
+        <label for="name" class="col-sm-2 control-label">Name:</label>
         <div class="col-sm-10">
-          <input id="authorName" name="name" type="text" class="form-control" />
+          <input id="name" name="name" type="text" class="form-control" />
         </div>
       </div>
       <!-- TODO: -->
       <div>
-        <label for="authorEmail" class="col-sm-2 control-label">Email:</label>
+        <label for="email" class="col-sm-2 control-label">Email:</label>
         <div class="col-sm-10">
           <input
-            id="authorEmail"
+            id="email"
             name="email"
             type="text"
             class="form-control"
@@ -55,8 +55,8 @@ module.exports = () =>
             class="form-control"
             style="width: 350px"
           >
-            <option value="enabled">Enabled</option>
-            <option value="disabled">Disabled</option>
+            <option value="open">Enabled</option>
+            <option value="closed">Disabled</option>
           </select>
         </div>
       </div>
